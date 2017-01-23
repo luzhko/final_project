@@ -1,0 +1,23 @@
+.menu-sub {
+	opacity: 1;
+	visibility: visible;
+	display: none;
+
+}
+.menu-main > li.under-menu:hover .menu-sub  {
+	display: block;
+}
+.menu-main > li:after{
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    background-color: #000;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -7px;
+}
+.menu-main > li.menu-last:after {
+	content: none;	
+}

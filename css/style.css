@@ -1,0 +1,283 @@
+* {
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: 'Comic Sans MS', cursive;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    
+}
+h2 {
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+img {
+    max-width: 100%;
+}
+.container {
+    max-width: 1240px;
+    margin:  0 auto;
+    min-width: 300px;
+}
+/*start grid*/
+.row {
+    width: 100%;   
+}
+
+.row:after {
+    content:'';
+    display:table;
+    clear:both;
+}
+
+[class*="col"] {
+    float:left;
+    position: relative;
+    padding: 10px;
+}
+
+.col-md-4 {
+    width:  33.33%;
+}
+
+.col-md-8 {
+    width:  66.66%;
+}
+
+.col-md-6 {
+    width: 50%;
+}
+
+.col-md-3 {
+    width: 25%;
+}
+
+.col-md-9 {
+    width: 75%;
+}
+.col-md-pull {
+    left: 50%;
+}
+.col-md-push {
+    right: 50%;
+}
+/*start main class*/
+.text-center {
+    text-align: center
+}
+.float-l {
+    float: left;
+}
+.float-r {
+    float: right;
+}
+.red {
+    color: red;
+}
+.btn {
+    background-color: gray;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+.btn:focus {
+    border: none;
+    outline: none;
+}
+.btn:hover {
+    color: gray;
+    background-color: #e3e3e3;
+    outline: none;
+}
+/*end main class*/
+/*start header*/
+.head {
+    background: #f1f1f1;
+} 
+.head:after {
+    content: '';
+    clear: both;
+    display: table;
+    
+}
+.logo {
+    height: 52px;
+    border: none;
+}
+.menu-main .icon-close {
+    display: none;
+}
+.menu {
+    float: right;
+}
+.menu ul {
+    list-style-type: none;
+    padding-left: 0px;
+    margin: 0
+}
+
+.menu-main > li {
+    display: inline-block;
+    position: relative;
+
+}
+.menu-main > li:not(:last-child):after{
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    background-color: #000;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -7px;
+}
+.menu-main > li > a {
+    display: block;
+    padding: 18px 10px;
+    transition: all 0.3s ease;
+    font-weight: 700;
+} 
+
+.menu-main > li:hover {
+   color: #a3abab; 
+}
+
+.menu-main > li:last-child {
+    margin-right: 0px;
+}
+
+.menu-sub { 
+    background-color: #f1f1f1;
+    position: absolute;
+    opacity: 0;
+    top: 100%;
+    left: 0;
+    transition: opacity 0.3s ease;
+    visibility: hidden;
+    z-index: 9;
+} 
+.menu-sub > li a{
+    display: block;
+    padding: 12px 8px;
+    transition: all 0.3s ease;
+}
+.menu-sub > li:hover{
+    background: #f1f1f1;
+    color: #000;
+    
+}
+
+.head-mob-menu {
+    display: none;
+}
+
+/*end header*/
+/*start form*/
+label {
+    display: block;
+    padding: 10px 0;
+}
+.form-control {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border-width: 1px;
+} 
+/*end form*/
+
+/*start footer*/
+.footer {
+    text-align: center;
+    padding-top: 10px;
+    border-top: 1px solid #a39a9a;
+    margin-top: 10px;
+}
+.footer-logo .logo {
+    max-height: 52px;
+}
+.footer-social-icon i{     
+    border: 1px solid grey;
+    padding: 12px;
+    border-radius: 11px;
+    color: grey;
+}
+
+.footer-contact-us table{
+    margin: 0 auto;
+    
+}
+/*end footer*/
+
+/*hover*/
+@media (min-width: 769px){
+   .menu-main > li:hover .menu-sub {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+/*hover*/
+
+@media(max-width: 768px) {
+    /*start modile menu*/
+    .head-mob-menu {
+        display: block;
+        float: right;
+        line-height: 52px;
+        font-size: 28px;
+        margin-right: 8px;
+    }
+    .menu-main .icon-close {
+        display: inline-block;
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        margin-top: -7px;
+    }
+    .head-mob-menu i {
+        cursor: pointer;
+    }
+    .menu {
+        display: none;
+    }
+    .activ-mob-menu {
+        display: block;
+        float: none;
+    }
+    .menu-main > li {
+        display: block;
+        text-align: center;
+    } 
+    .under-menu a{
+        position: relative;
+    }
+    .menu-sub {
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        position: relative;
+    }
+    .menu-main > li:not(:last-child):after{
+        content: none;
+    }
+    /*end modile menu*/
+    /*start footer*/
+    .footer-social-icon,
+    .footer-contact-us {
+        margin-top: 20px;
+    }
+    /*end footer*/
+    /*start grid*/
+    .col-768{
+        width: 100%;
+    }
+    /*end grid*/ 
+
+    
+}
