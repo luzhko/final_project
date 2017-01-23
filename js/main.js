@@ -122,7 +122,6 @@ jQuery(document).ready(function () {
     sliderWidth();
     $('.nav i').click(function () {
         $('.nav i').removeClass('active');
-		console.log($('.nav i.active'));
         $(this).addClass('active');
         setMargin(400);
         
@@ -200,7 +199,6 @@ jQuery(document).ready(function () {
             $('.numbers-room.all-busy').addClass('filter-free-busy');;
            
         } else if (name == 'busy') {
-            console.log($('.numbers-room'));
             $('.numbers-room').not('.all-busy').addClass('filter-free-busy');;
         }
     })
@@ -230,7 +228,6 @@ $(window).resize(function() {
 function disabledRoomButton(){
     $('.numbers-room-free-count').each(function(){
         if (+$(this).text() == 0 ){
-            console.log(2);
             $(this).css('color','red');
             $(this).parent('.numbers-room-free').siblings('.room-pre-order').attr('disabled','disabled');
              $(this).parent().parent().parent('.numbers-room').addClass('all-busy');
