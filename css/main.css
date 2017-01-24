@@ -47,14 +47,19 @@
     padding: 40px;
 }
 /*box-bg*/
+
+
 .dox-bg {
-    background: url(../img/bg.jpg);
+    
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
     background-attachment: fixed;
     background-size: cover;
     
+}
+.bg-index-img {
+    background-image: url(../img/bg.jpg);
 }
 
 .dox-bg-h {
@@ -69,6 +74,9 @@
 /*end home page*/
 
 /*start about-us*/
+.bg-about-us-img {
+    background-image: url(../img/about.jpg);
+}
 .about-us {
     text-align: justify;
 }
@@ -98,13 +106,16 @@ h2.number-room-name {
 /*end room*/
 
 /*start page gallery*/
+.bg-gallery-img {
+    background-image: url(../img/bg-gallery.jpg)
+}
 .gallery-big-photo {
     text-align: center;
     margin: 20px;  
 }
 .gallery-big-photo img {
     width: 300px;
-    height: 300px;  
+    height: 100%;  
 }
 .gallery-small-photo {
     list-style-type: none;
@@ -147,6 +158,18 @@ h2.number-room-name {
 .scroll {
     max-height: 100px;
     overflow: auto;
+}
+.search-error {
+    display: block;
+}
+.bg-conference-img {
+    background-image: url(../img/conf.jpg);
+}
+.bg-events-img {
+    background-image: url(../img/meropriyatiya.jpg);
+}
+.bg-spa-img {
+    background-image: url(../img/spa.jpg);
 }
 /*end all service*/
 
@@ -192,7 +215,11 @@ h2.number-room-name {
     display: none;
 }
 /*end modal window*/
-
+/*start contact*/
+.bg-contact-img {
+    background-image: url(../img/bg-contact.jpg)
+}
+/*end contact*/
 @media(max-width: 768px) {
 	.modal {
 		width: 300px;

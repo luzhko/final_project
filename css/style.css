@@ -24,6 +24,9 @@ img {
     margin:  0 auto;
     min-width: 300px;
 }
+button, input:focus, input:focus{
+    outline: none;
+}
 /*start grid*/
 .row {
     width: 100%;   
@@ -202,7 +205,7 @@ label {
 .footer-logo .logo {
     max-height: 52px;
 }
-.footer-form-search {
+.form-search {
     position: relative;
     margin: 0 auto;
     display: inline-block;

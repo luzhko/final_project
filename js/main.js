@@ -6,7 +6,7 @@ jQuery(document).ready(function () {
         var link = $(this).attr('src');
         
         $('#large img').attr('src', link);
-        $('html, body').animate({scrollTop: $('#large img').offset().top}, 400);
+        $('html, body').animate({scrollTop: $('#large img').offset().top}, 200);
         
         event.stopPropagation;
         event.preventDefault();
@@ -134,14 +134,13 @@ jQuery(document).ready(function () {
         $('.pagination li').removeClass('active');
         $(this).addClass('active');
         var elem = $('.pagination li').index(this);
-    $('.gallery-small-photo li').css('display', 'none');
-        for (var i = 0; 5 > i; i++){
-            try {
-                $('.gallery-small-photo li:eq('+(elem*5+i)+')').css('display','inline');
-            } catch (err) {
-                console.log (err + 'Неправильно работает цикл')
-            }
-            
+        $('.gallery-small-photo li').css('display', 'none');
+            for (var i = 0; 5 > i; i++){
+                try {
+                    $('.gallery-small-photo li:eq('+(elem*5+i)+')').css('display','inline');
+                } catch (err) {
+                    console.log (err + 'Неправильно работает цикл')
+                } 
         }
      });
     
@@ -209,11 +208,36 @@ jQuery(document).ready(function () {
         var name = $(this).val();
         $('.numbers-room').not('.'+name).addClass('filter-see');
    });
+    
 // remove filter
     $('.remove-filter').click(function(){
         $('.numbers-room').removeClass('filter-see filter-free-busy');
         $('.filters input[name="see"]').prop('checked', false);
          $('.filters input[name="free-busy"]').prop('checked', false);
+    })
+    
+//search
+    $(".events button.search-text").click(function(){
+        $('.events .search-error').text('');
+        $('.events .for-form-search').find('span').each(function(){
+            $(this).prop('outerHTML',$(this).html() )
+        })
+        var search = $(".events input[name='search']").val();
+        if (search == "" || search == " "){
+            $('.events .search-error').text('Введите корректное значение');
+            return false;
+        }
+        $('.events .for-form-search p:contains("'+search+'")').each(function(){
+            var resalt = $(this).html().replace(search,'<span class="red">'+search+'</span>');
+            $(this).html(resalt);
+        })
+        if($('.for-form-search p span.red').length == 0){
+            $('.events .search-error').text('Нет совпадений');
+            return false;
+        } else {
+             $('.events .search-error').text('Совпадений: '+ $('.for-form-search p span.red').length);
+            
+        }
     })
     
 });
