@@ -1,15 +1,13 @@
-jQuery(document).ready(function () {
+$(document).ready(function () {
     
 // gallety
     
-    $('#small li img').click(function (event) {
+    $('#small li img').click(function () {
         var link = $(this).attr('src');
         
         $('#large img').attr('src', link);
         $('html, body').animate({scrollTop: $('#large img').offset().top}, 200);
         
-        event.stopPropagation;
-        event.preventDefault();
     });
     
 // mobile menu  media 
@@ -18,21 +16,21 @@ jQuery(document).ready(function () {
         $('.menu').toggleClass('activ-mob-menu');
     });
     
-// mobile menu   open
+// mobile menu  open
     
     $('body').on('click', '.activ-mob-menu .under-menu', function () {
         $(this).find('.menu-sub').toggle();
-        var icon = 'plus';
+        var icon = 'right';
         
         if ($(this).find('.menu-sub').is(':visible')) {
-            icon = 'minus';
+            icon = 'down';
         }
-        $(this).find('.icon-close').attr('class', 'fa fa-' + icon + ' icon-close');
+        $(this).find('.icon-close').attr('class', 'fa fa-angle-' + icon + ' icon-close');
     });
     
 // validation contact form 
     
-    $('.contact-form').submit(function (event) {
+    $('.contact-form').submit(function () {
         $('.contact-form .error').remove();
     
         var data = validator('.contact-form');
@@ -43,13 +41,11 @@ jQuery(document).ready(function () {
         
         $('.contact-form').remove();
         $('.contact-info').html('<h2 class="text-center">Ваше сообщение отправлено</h2>');
-        event.preventDefault;
         return false;
     });
     
 // modal window open
-     $('body').on('click', '.room-pre-order', function (event) {
-        event.preventDefault();
+     $('body').on('click', '.room-pre-order', function () {
         
         $('.modal-info').removeAttr('style');
         $(this).parent().addClass('activ-room');
@@ -62,6 +58,7 @@ jQuery(document).ready(function () {
 		$('.overlay').fadeIn(400, function () {
 				$('.modal').css('display', 'block').animate({opacity: 1}, 200);
 		});
+		return false;
 	});
     
  // modal window close 
@@ -75,10 +72,14 @@ jQuery(document).ready(function () {
 	});
     
 // buy a room 
-    
-    disabledRoomButton();
-    $('.modal-form').submit(function (event) {
-        event.preventDefault();
+
+    if ($('.numbers-room').length > 0 ){
+		disabledRoomButton();
+		setLocal();
+	}
+	
+    $('.modal-form').submit(function () {
+
         $('.modal-info').removeAttr('style');
         $('.modal-form .error').remove();
         
@@ -99,14 +100,23 @@ jQuery(document).ready(function () {
                 color: 'red'}).html('Укажите меньшее количество проживающих');
             return false;
         }
-        
         $('.modal-info').css({
                 display: 'block',
                 color: 'grey' }).html('Ваша заявка отправлена!');
         $('.activ-room .numbers-room-free-count').text(free - countRoom);
         $('.activ-room .numbers-room-busy-count').text(busy + countRoom);
+		
+		try {		
+			var nameRoom = $('.activ-room .number-room-name').data('room');
+			localStorage.setItem(nameRoom + "_Free",free - countRoom);
+			localStorage.setItem(nameRoom + "_Busy",busy + countRoom);	
+		}
+		catch (e) {
+			console.log('Нет поддержки localStorage');
+		}
+		
         disabledRoomButton();
-        
+        return false;
     });
     
 // only numders
@@ -117,9 +127,11 @@ jQuery(document).ready(function () {
         }
     })
     
-//slider 
-    
-    sliderWidth();
+//slider
+ 
+    if ($('.nav i').length > 0 ){
+		sliderWidth();
+	}
     $('.nav i').click(function () {
         $('.nav i').removeClass('active');
         $(this).addClass('active');
@@ -128,19 +140,18 @@ jQuery(document).ready(function () {
     });
     
 //pagination
-    
-    pagination(5);
+
+    if( $('.gallery').length > 0 ) {
+		pagination(5);
+	}
+  
     $('body').on('click', '.pagination li', function () {
         $('.pagination li').removeClass('active');
         $(this).addClass('active');
         var elem = $('.pagination li').index(this);
         $('.gallery-small-photo li').css('display', 'none');
-            for (var i = 0; 5 > i; i++){
-                try {
-                    $('.gallery-small-photo li:eq('+(elem*5+i)+')').css('display','inline');
-                } catch (err) {
-                    console.log (err + 'Неправильно работает цикл')
-                } 
+        for (var i = 0; 5 > i; i++){
+            $('.gallery-small-photo li:eq('+(elem*5+i)+')').css('display','inline');
         }
      });
     
@@ -169,16 +180,15 @@ jQuery(document).ready(function () {
 				return 0;
 			}		
             if (inputVal == 'cheap'){ 
-				if (a.key < b.key)
+				if (a.key < b.key) {
 					return -1;
-				else
-					return 1;
+                }
             } else if ( inputVal == 'expensive' ){
-				if (a.key > b.key)
+				if (a.key > b.key) {
 					return -1;
-				else
-					return 1;
+                }
             }
+            return 1;
         }); 
 
         var total = '';
@@ -210,6 +220,7 @@ jQuery(document).ready(function () {
    });
     
 // remove filter
+
     $('.remove-filter').click(function(){
         $('.numbers-room').removeClass('filter-see filter-free-busy');
         $('.filters input[name="see"]').prop('checked', false);
@@ -217,6 +228,7 @@ jQuery(document).ready(function () {
     })
     
 //search
+
     $(".events button.search-text").click(function(){
         $('.events .search-error').text('');
         $('.events .for-form-search').find('span').each(function(){
@@ -245,15 +257,18 @@ jQuery(document).ready(function () {
 
 
 $(window).resize(function() {
-    sliderWidth()
-    setMargin()
+	if ($('.nav i').length > 0 ){
+		sliderWidth()
+		setMargin()
+	}
+    
 });
 
 function disabledRoomButton(){
     $('.numbers-room-free-count').each(function(){
         if (+$(this).text() == 0 ){
             $(this).css('color','red');
-            $(this).parent('.numbers-room-free').siblings('.room-pre-order').attr('disabled','disabled');
+            $(this).parent('.numbers-room-free').siblings('.room-pre-order').attr('disabled','disabled').addClass('disabled');
              $(this).parent().parent().parent('.numbers-room').addClass('all-busy');
         }
     })
@@ -323,4 +338,26 @@ function validator (elem) {
         data.tel = $(elem +' input[name="tel"]').val();
         data.message = $(elem +' textarea[name="message"]').val();
         return data;
+}
+function setLocal (){
+	//localStorage.clear();
+		
+		try {
+			$('.numbers-room').each(function(){
+				var name =  $(this).find('.number-room-name').data('room');
+				if (localStorage.getItem(name + "_Free") == null){
+					localStorage.setItem(name + "_Free", $(this).find('.numbers-room-free-count').text() );
+					localStorage.setItem(name + "_Busy", $(this).find('.numbers-room-busy-count').text() );
+					
+				} else {
+					$(this).find('.numbers-room-free-count').text(localStorage.getItem(name + "_Free"));
+					$(this).find('.numbers-room-busy-count').text(localStorage.getItem(name + "_Busy"));
+				}
+			});
+			
+		}
+		catch (e) {
+			console.log('Нет поддержки localStorage');
+		}
+        disabledRoomButton();
 }

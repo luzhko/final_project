@@ -256,10 +256,8 @@ label {
     }
     .menu-main .icon-close {
         display: inline-block;
-        position: absolute;
-        right: 0px;
-        top: 50%;
-        margin-top: -7px;
+		position: relative;
+		right: -10px;
     }
     .head-mob-menu i {
         cursor: pointer;

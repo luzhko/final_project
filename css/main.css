@@ -99,10 +99,25 @@
 .filter-free-busy , .filter-see {
     display: none;
 }
+.numbers-room-free {
+    font-weight: bold;
+}
+.price {
+    display: inline;
+    font-weight: bold;
+}
+.view {
+    margin-left: 10px;
+    color: #808080;
+}
 
 h2.number-room-name {
     margin-top: 0px;
 }
+.disabled {
+    cursor: default;
+}
+
 /*end room*/
 
 /*start page gallery*/
@@ -162,15 +177,7 @@ h2.number-room-name {
 .search-error {
     display: block;
 }
-.bg-conference-img {
-    background-image: url(../img/conf.jpg);
-}
-.bg-events-img {
-    background-image: url(../img/meropriyatiya.jpg);
-}
-.bg-spa-img {
-    background-image: url(../img/spa.jpg);
-}
+
 /*end all service*/
 
 /*start modal wimdow*/

@@ -7,11 +7,9 @@
         margin-right: 8px;
     }
     .menu-main .icon-close {
-        display: inline;
-        position: absolute;
-        right: 0px;
-        top: 50%;
-        margin-top: -7px;
+		display: inline-block;
+		position: relative;
+		right: -10px;
     }
     .head-mob-menu i {
         cursor: pointer;
